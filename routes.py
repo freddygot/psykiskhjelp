@@ -16,7 +16,7 @@ def index():
     return render_template('index.html')
 
 
-@routes.route('/scrape_avtalespesialister')
+@routes.route('/scrape_avtalespesialister') --
 def scrape_avtalespesialister_route():
     url = 'https://avtalespesialister.helse-sorost.no/Spesialister1.asp?cmd=Detail&type=351&id=3'
     scraped_names = get_psychologist_names_from_avtale(url)
