@@ -7,16 +7,22 @@ def get_psychologist_names_from_avtale(url):
         response = requests.get(url)
         response.raise_for_status()  # Dette vil kaste en feil for dårlige statuskoder.
         soup = BeautifulSoup(response.text, 'html.parser')
-        names = [name.get_text(strip=True) for name in soup.select('td > a')]
         
-        if not names:  # Hvis ingen navn ble funnet, logg HTML for feilsøking.
+        # Finn alle 'tr' elementer, men ignorer de som har klassen 'Fagfelt'
+        psychologist_rows = [tr for tr in soup.find_all('tr') if 'Fagfelt' not in tr.get('class', [])]
+        
+        # Hent ut det første 'td' elementet for hver rad, som inneholder navnet
+        psychologist_names = [row.find('td', class_='ListItem').get_text(strip=True) for row in psychologist_rows if row.find('td', class_='ListItem')]
+
+        if not psychologist_names:  # Hvis ingen navn ble funnet, logg HTML for feilsøking.
             with open('html_log.txt', 'w', encoding='utf-8') as file:
                 file.write(soup.prettify())
 
-        return names
+        return psychologist_names
     except Exception as e:
         print(f"En feil oppstod: {e}")
         return []  # Returnerer en tom liste hvis det oppstår en feil.
+
 
 
 def scrape_privatpraktiserende(url):
