@@ -1,0 +1,2867 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <title>
+   Avtalespesialister
+  </title>
+  <style type="text/css">
+   .Hover {
+	background-color: #8DAED9;
+}
+.HoverOut {
+	background-color: transparent;
+}
+
+.Heading {
+	position:absolute;
+	margin-left:65px;
+	margin-top:15px;
+	font-family: "Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+	color: #034584;
+	font-size: 30px;
+	font-weight: 600;
+}
+.HeadTxt {
+	margin-left:65px;
+	font-family: "Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+	color: #034584;
+	font-size: 18px;
+	font-weight: 300;
+
+}
+.TableHeading {
+	font-family: verdana;
+	font-weight: 700;
+	font-size: 16px;
+	background: #F1F2F2;
+}
+.ListItem {
+	height: 24px;
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cddbe8;
+	font-family: 'Segoe UI','Segoe',Tahoma,Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+}
+.Fagfelt {
+	height: 24px;
+	background: transparentfont-family: 'Segoe UI','Segoe',Tahoma,Helvetica,Arial,sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+}
+th {
+	background: #cddbe8;
+	text-align: left;
+	font-family: 'Segoe UI','Segoe',Tahoma,Helvetica,Arial,sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+}
+  </style>
+  <script src="AJAX.js">
+  </script>
+  <script type="text/javascript">
+   var prevID=0
+
+function MarkLine(obj)
+{
+	
+	obj.className='Hover'
+}
+
+function UnMarkLine(obj)
+{
+	document.getElementById("Info").style.visibility="hidden";		
+	obj.className='HoverOut'
+	//document.getElementById("Info").innerHTML="Vennligst vent...."
+}
+
+function Show(e,obj) {
+	
+return	
+	id=obj.id
+	
+	if (id==prevID) {return;}
+	prevID=id
+	
+	var posx = 0;
+	var posy = 0;
+	if (!e) var e = window.event;
+	if (e.pageX || e.pageY) 	{
+		posx = e.pageX;
+		posy = e.pageY;
+	}
+	else if (e.clientX || e.clientY) 	{
+		posx = e.clientX + document.body.scrollLeft
+			+ document.documentElement.scrollLeft;
+		posy = e.clientY + document.body.scrollTop
+			+ document.documentElement.scrollTop;
+	}
+	
+	
+		if(e.clientY > 290)
+	{posy=posy-140}
+	
+	document.getElementById("Info").style.left=posx+40+"px"
+	document.getElementById("Info").style.top=posy-20+"px"
+	document.getElementById("Info").style.visibility="visible";
+	
+	document.getElementById("Info").innerHTML="<table width='100%' border='0'><tr><td align='center' > <img alt='Vennligst vent'  src='./Img/progressbar_hor.gif'  /></td><tr></table>"
+	
+//	document.getElementById("Info").innerHTML="X: "+posx+"<BR>y: "+posy+"<br>ID: "+id
+//document.getElementById("Info").innerHTML="XXXPosx - Posy:"+ posx+" - "+ posy+"<BR>"+"Body.scrollLeft - Body.scrollTop"+document.body.scrollLeft+" - "+document.body.scrollTop+"<BR>"+"Element.scrollLeft - Element.scrollTop"+document.documentElement.scrollLeft+" - "+document.documentElement.scrollTop+"<BR>"+"ClientX - ClientY"+e.clientX+" - "+e.clientY
+//return
+	
+	
+	//FetchDB('spesialister2.asp?cmd=ShowProperties&id='+ obj.id,'Info')	 
+	
+	
+	//FetchDB('admin.asp?cmd=ajax&Func=ShowProperties&id='+id,'Info')
+	
+
+	// posx and posy contain the mouse position relative to the document
+	// Do something with this information
+}
+
+function xShow(obj)
+{
+
+//r objShowBelow = document.getElementById(obj);
+var objShowBelow = obj
+	
+	var w = objShowBelow.offsetWidth
+  	var x = objShowBelow.offsetLeft;
+  	var y = objShowBelow.offsetTop + objShowBelow.offsetHeight ;
+
+  	while (objShowBelow.offsetParent) {
+    	objShowBelow = objShowBelow.offsetParent;
+    	x += objShowBelow.offsetLeft;
+    	y += objShowBelow.offsetTop ;
+	}
+
+	document.getElementById("Info").style.left=x+120
+	document.getElementById("Info").style.top=y-30
+
+document.getElementById("Info").innerHTML="Vennligst vent....."
+document.getElementById("Info").style.visibility="visible";	
+//	alert('cmd=ShowProperties&id='+ obj.id)
+	FetchDB('spesialister2.asp?cmd=ShowProperties&id='+ obj.id,'Info')	 
+
+
+//document.getElementById("Info").style.top=document.body.scrollTop+50;
+
+// document.getElementById("Info").innerHTML="<br>&nbsp;<B>" + str.innerHTML + "</B><br><HR>";
+
+
+}
+
+
+
+function PrintList()
+{
+winPrint=window.open('Spesialister1.asp?cmd=Print&id=3&Type=351','Utskrift','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, height=800, width=1200')
+winPrint.focus()
+}
+  </script>
+ </head>
+ <body>
+  <img alt="Logo" height="48" src="Img/HelseSorOst_stor.png" style="margin-left:65px;margin-top:15px;" width="235"/>
+  <span class="Heading">
+   Avtalespesialister
+  </span>
+  <div class="HeadTxt">
+   <br/>
+   <br/>
+   <br/>
+   Fra 1.september 2023 er
+   <a href="https://www.helse-sorost.no/om-oss/vart-oppdrag/vare-hovedoppgaver/behandling/psykisk-helsevern/felles-henvisningsmottak">
+    felles henvisningsmottak
+   </a>
+   innført i hele Helse Sør-Øst.
+   <br/>
+   Innføring av felles henvisningsmottak innebærer at alle voksne pasienter som skal henvises til avtalespesialister innen psykisk helsevern må få henvisningen rettighetsvurdert ved et distriktspsykiatrisk senter (DPS).
+   <br/>
+   Henvisningen sendes elektronisk til DPS og vil bli vurdert i felles henvisningsmottak. Pasienter som har rett til nødvendig helsehjelp fra spesialisthelsetjenesten, vil få tilbud om helsehjelp enten fra en avtalespesialist eller ved DPS.
+   <br/>
+   <br/>
+   Pasienter har fortsatt rett til å velge behandlingssted. Det er valgrett på to nivåer:
+   <ul>
+    <li>
+     Å velge hvilket DPS som skal rettighetsvurdere henvisningen
+    </li>
+    <li>
+     Å velge hvor helsehjelpen skal mottas, enten ved et konkret DPS eller hos en avtalespesialist.
+    </li>
+   </ul>
+   <br/>
+   Informasjonstjenesten Velg behandlingssted har informasjon om hvilke tjenester og tilbud de ulike avtalespesialistene har.
+   <br/>
+   Du kan ringe kontoret på telefon 24 24 05 00
+  </div>
+  <br>
+   <!--StartRepeat-->
+   <div style="padding-left:65px;height:30px">
+    <img alt="Skriv ut" height="18" onclick="PrintList()" src="./Img/print_underside.png" style="cursor:pointer;" width="18"/>
+   </div>
+   <div style="padding-left:65px; padding-right:65px">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+     <tr>
+      <th>
+       Etternavn, Fornavn
+      </th>
+      <th>
+       DPS tilhørighet
+      </th>
+      <th>
+       Kontor tlf
+      </th>
+      <th>
+       Kontor adresse
+      </th>
+      <th>
+       Postnr. sted
+      </th>
+      <th>
+       Postadresse
+      </th>
+      <th>
+       Ventetid (uker)
+      </th>
+     </tr>
+     <tr class="Fagfelt">
+      <td colspan="6">
+       <br>
+        <b>
+         Barne- og ungdomspsykolog
+        </b>
+       </br>
+      </td>
+     </tr>
+     <tr id="6780" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Rustad, Nora
+      </td>
+      <td class="ListItem">
+       *Ikke tilknyttet*
+      </td>
+      <td class="ListItem">
+       951 66 603
+      </td>
+      <td class="ListItem">
+       Rosenkrantzgate 7
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+       36
+      </td>
+     </tr>
+     <tr class="Fagfelt">
+      <td colspan="6">
+       <br>
+        <b>
+         Nevropsykolog
+        </b>
+       </br>
+      </td>
+     </tr>
+     <tr id="7198" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Hessen, Erik
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       920 97 373
+      </td>
+      <td class="ListItem">
+       Mogens Thorsens gate 10
+      </td>
+      <td class="ListItem">
+       0264 Oslo
+      </td>
+      <td class="ListItem">
+       Nevropsykologisk poliklinikk, Mogens Thorsens gate 10,0264 Oslo
+      </td>
+      <td class="ListItem">
+       18
+      </td>
+     </tr>
+     <tr id="7276" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Holen, Arne
+      </td>
+      <td class="ListItem">
+       DPS Nedre Romerike
+      </td>
+      <td class="ListItem">
+       917 71 280
+      </td>
+      <td class="ListItem">
+       Karihaugveien 89
+      </td>
+      <td class="ListItem">
+       1086 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+       12
+      </td>
+     </tr>
+     <tr id="7024" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Haanes, Helen
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       926 63 509
+      </td>
+      <td class="ListItem">
+       Nevropsykologisk Poliklinikk, Mogens Thorsens gt. 10
+      </td>
+      <td class="ListItem">
+       0264 Oslo
+      </td>
+      <td class="ListItem">
+       Nevropsykologisk poliklinikk,Mogens Thorsens gt. 10,0264 Oslo
+      </td>
+      <td class="ListItem">
+       26
+      </td>
+     </tr>
+     <tr id="7194" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Jacobsen, Svenn Erik
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       922 97 136
+      </td>
+      <td class="ListItem">
+       Meltzers gate 4
+      </td>
+      <td class="ListItem">
+       0257 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+       18
+      </td>
+     </tr>
+     <tr id="7196" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Karlsen, Nils R.
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       481 74 959
+      </td>
+      <td class="ListItem">
+       Meltzers gate 4
+      </td>
+      <td class="ListItem">
+       0257 Oslo
+      </td>
+      <td class="ListItem">
+       Meltzers gt. 4,0257 Oslo
+      </td>
+      <td class="ListItem">
+       12
+      </td>
+     </tr>
+     <tr id="7197" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Krogstad, Jan Magne
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       +4790644655
+      </td>
+      <td class="ListItem">
+       Christiania Medisinske senter, Skippergata 33
+      </td>
+      <td class="ListItem">
+       0154 Oslo
+      </td>
+      <td class="ListItem">
+       Skippergatga 33,0154 Oslo
+      </td>
+      <td class="ListItem">
+       42
+      </td>
+     </tr>
+     <tr id="7055" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Landrø, Nils Inge
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       950 38 479
+      </td>
+      <td class="ListItem">
+       Karihaugveien 89
+      </td>
+      <td class="ListItem">
+       1086 Oslo
+      </td>
+      <td class="ListItem">
+       PB 17, Blindern,0313 Oslo
+      </td>
+      <td class="ListItem">
+       26
+      </td>
+     </tr>
+     <tr id="7496" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Sundseth, Øyvind Østberg
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       936 58 491
+      </td>
+      <td class="ListItem">
+       Skippergt. 33
+      </td>
+      <td class="ListItem">
+       0154 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+       15
+      </td>
+     </tr>
+     <tr class="Fagfelt">
+      <td colspan="6">
+       <br>
+        <b>
+         Psykisk helsevern
+        </b>
+       </br>
+      </td>
+     </tr>
+     <tr id="7806" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Almuzahim, Shohra
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       471 32 819
+      </td>
+      <td class="ListItem">
+       Holmlia Senter vei 12
+      </td>
+      <td class="ListItem">
+       1255 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7784" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Arnevik, Annmari Ajo
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       970 18 137
+      </td>
+      <td class="ListItem">
+       Haugerudsenteret 1
+      </td>
+      <td class="ListItem">
+       0673 Oslo
+      </td>
+      <td class="ListItem">
+       Postboks 76, Haugerud,0616 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7930" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Bakke, Anette
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       468 80 809
+      </td>
+      <td class="ListItem">
+       Kabelgata 1A
+      </td>
+      <td class="ListItem">
+       0581 Oslo
+      </td>
+      <td class="ListItem">
+       Kabelgata 1B,0581 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8033" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Benestad, Elin
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       404 78 493
+      </td>
+      <td class="ListItem">
+       Stovner Senter 3
+      </td>
+      <td class="ListItem">
+       0985 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7182" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Benkø, Anna
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       971 47 443
+      </td>
+      <td class="ListItem">
+       Nobelsgate 16 A, 0268 Oslo
+      </td>
+      <td class="ListItem">
+       0268 Oslo
+      </td>
+      <td class="ListItem">
+       Hertzbergsgate 4B,0360 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7195" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Bjørnstad, Sverre
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       913 37 466
+      </td>
+      <td class="ListItem">
+       C.J. Hambros plass 5
+      </td>
+      <td class="ListItem">
+       0164 Oslo
+      </td>
+      <td class="ListItem">
+       C.J.Hambros plass 5,0164 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7191" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Brautaset, Heidi
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       416 94 048
+      </td>
+      <td class="ListItem">
+       Psykologspesialistene, Meltzersgate 9
+      </td>
+      <td class="ListItem">
+       0257 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7921" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Bruland, Monica
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       988 07 982
+      </td>
+      <td class="ListItem">
+       Kabelgata 1
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+       Kabelgata 1B,0580 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7098" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Brun, Herman
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       466 53 443
+      </td>
+      <td class="ListItem">
+       Ekebergvn. 1a
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1a,0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7509" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Bruusgaard, Lise
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       468 34 944
+      </td>
+      <td class="ListItem">
+       Oslo Hospital, Ekebergveien 1
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1,0129 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7170" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Brynhildsen, Eva-Kristin
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       412 27 472
+      </td>
+      <td class="ListItem">
+       Rosenborggate 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7292" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Børstad, Marianne
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       971 14 383
+      </td>
+      <td class="ListItem">
+       Nobels gate 16A
+      </td>
+      <td class="ListItem">
+       0268 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7099" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Carli; PhD, Amalia
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       932 61 112
+      </td>
+      <td class="ListItem">
+       Terapeutene Majorstuvn 36
+      </td>
+      <td class="ListItem">
+       0367 Oslo
+      </td>
+      <td class="ListItem">
+       Majorstuvn, 36 A, 6. et. (hjørne m Jacob Aalsgt.),0367 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6770" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Dundas, Irene
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       466 98 764
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6785" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Edland, Tone Rosenvinge
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       413 56 156
+      </td>
+      <td class="ListItem">
+       St. Olavs plass 3, 5. etasje
+      </td>
+      <td class="ListItem">
+       0165 Oslo
+      </td>
+      <td class="ListItem">
+       St Olavs Plass 3,0165 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7504" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Eide, Inger Marie
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       974 23 373
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1 A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6786" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Eidissen, Vigdis
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       928 38 685
+      </td>
+      <td class="ListItem">
+       Institutt for Psykoterapi, Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6974" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Ekrem, Toril Mjøen
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       454 45 381
+      </td>
+      <td class="ListItem">
+       Rosenborggt 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+       Rosenborggt 13C,0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7088" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Evang, Karl Eldar
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       992 28 483
+      </td>
+      <td class="ListItem">
+       Rosenkrantz gt. 7
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6775" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Evensen, Niels H
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       22 42 32 02
+      </td>
+      <td class="ListItem">
+       Rosenkrantzgt. 10 A
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+       Rosenkrantzgt 10 A,0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8089" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Fagerli, Tone
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       923 46 011
+      </td>
+      <td class="ListItem">
+       Vetlandsveien 101
+      </td>
+      <td class="ListItem">
+       0685 Oslo
+      </td>
+      <td class="ListItem">
+       Vetlandsveien 99,0658 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6973" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Finnøy, Ole Johan
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       905 14 931
+      </td>
+      <td class="ListItem">
+       Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7017" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Forsmo, Rune
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       951 86 639
+      </td>
+      <td class="ListItem">
+       Arbeidersamfunnets plass 1
+      </td>
+      <td class="ListItem">
+       0181 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7180" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Foss, Torberg
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       948 84 391
+      </td>
+      <td class="ListItem">
+       Professor Dahls gate 8
+      </td>
+      <td class="ListItem">
+       0355 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7104" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Frantzen, Unni B.
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       413 37 342
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+       Akersbakken 35 D,0172 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8005" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Frøkedal, Anne Marie
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       467 05 115
+      </td>
+      <td class="ListItem">
+       Østensjøveien 36
+      </td>
+      <td class="ListItem">
+       0667 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7107" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Grebstad, Sissel
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       930 29 204
+      </td>
+      <td class="ListItem">
+       Bygg P, Schous fysioterapi, Trondheimsveien 2
+      </td>
+      <td class="ListItem">
+       0560 Oslo
+      </td>
+      <td class="ListItem">
+       c/o Schous fysioterapi, Trondheimsveien 2,0560 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7805" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Green, Tom
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       970 87 455
+      </td>
+      <td class="ListItem">
+       Nedre Kalbakkvei 4
+      </td>
+      <td class="ListItem">
+       0950 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7523" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Gunnarshaug, Marit
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       948 61 217
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1 A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1A,0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7273" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Hafstad, Arild
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       901 53 876
+      </td>
+      <td class="ListItem">
+       Sagveien 23C
+      </td>
+      <td class="ListItem">
+       0459 Oslo
+      </td>
+      <td class="ListItem">
+       Bjerregaardsgate 60B,0174 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8114" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Haukebø, Kristin
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       920 92 223
+      </td>
+      <td class="ListItem">
+       Bentsebrugata 29 A
+      </td>
+      <td class="ListItem">
+       0469 Oslo
+      </td>
+      <td class="ListItem">
+       Bentsebrugata 29A,0469 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8034" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Hernandez, Arabella Marina Nuila
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       927 73 269
+      </td>
+      <td class="ListItem">
+       Holmlia Senter vei 12
+      </td>
+      <td class="ListItem">
+       1255 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7145" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Hjermann, Brita
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       454 67 771
+      </td>
+      <td class="ListItem">
+       Prof. Dahls gt. 18
+      </td>
+      <td class="ListItem">
+       0353 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7177" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Hoem, Sverre
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       408 40 359
+      </td>
+      <td class="ListItem">
+       Kirkevn. 64 B
+      </td>
+      <td class="ListItem">
+       0369 Oslo
+      </td>
+      <td class="ListItem">
+       Kirkevn 64 B,0366 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6983" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Holen, Linda
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       951 46 126
+      </td>
+      <td class="ListItem">
+       Pilestredet park 7.
+      </td>
+      <td class="ListItem">
+       0176 Oslo
+      </td>
+      <td class="ListItem">
+       Gamle Drammensvei 234,1383 Asker
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8106" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Holmen, Tineke
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       944 58 633
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7928" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Holthe-Berg, Hilde
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       902 50 134
+      </td>
+      <td class="ListItem">
+       Kabelgata 1A
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+       Kabelgata 1B,0581 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7147" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Hyvang, Mette
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       957 53 831
+      </td>
+      <td class="ListItem">
+       St. Olavs plass 3
+      </td>
+      <td class="ListItem">
+       0165 Oslo
+      </td>
+      <td class="ListItem">
+       St Olavs plass 3,0165 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6776" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Høydahl, Kari
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       992 96 841
+      </td>
+      <td class="ListItem">
+       Professor Dahlsgt. 18
+      </td>
+      <td class="ListItem">
+       0353 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7528" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Håland, Sissel
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       468 17 805
+      </td>
+      <td class="ListItem">
+       Vogtsgate 57A
+      </td>
+      <td class="ListItem">
+       0477 Oslo
+      </td>
+      <td class="ListItem">
+       Vogtsgate 57,0477 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7842" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Iqbal, Yasmin Sofia
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       969 22 773
+      </td>
+      <td class="ListItem">
+       Linderud senter, Erich Mogensøns vei 38. 5. etg
+      </td>
+      <td class="ListItem">
+       0594 Oslo
+      </td>
+      <td class="ListItem">
+       Postboks 60, Linderud,0517 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7317" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Iversen, Lena
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       482 95 800
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8059" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Jakobsen, Birgitte
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       970 41 928
+      </td>
+      <td class="ListItem">
+       Holmlia Senter vei 12
+      </td>
+      <td class="ListItem">
+       1255 Oslo
+      </td>
+      <td class="ListItem">
+       Munkerudåsen 41,1165 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7900" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Jansen, Bente Irén
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       950 61 940
+      </td>
+      <td class="ListItem">
+       Trondheimsveien 184
+      </td>
+      <td class="ListItem">
+       0570 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7789" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Johannesen, Ann Hasse
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       907 32 756
+      </td>
+      <td class="ListItem">
+       Vetlandsveien 99
+      </td>
+      <td class="ListItem">
+       0685 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7155" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Johansen, Jarl Otto
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       993 08 707
+      </td>
+      <td class="ListItem">
+       Fridtjof Nansens pl. 8
+      </td>
+      <td class="ListItem">
+       0160 Oslo
+      </td>
+      <td class="ListItem">
+       P.b. 2038,0125 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7156" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Johnsen, Anne Cecilie
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       481 80 620
+      </td>
+      <td class="ListItem">
+       Karakteranalystisk institutt, Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6967" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Julsrud, Lars Kielland
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       971 42 842
+      </td>
+      <td class="ListItem">
+       Rosenkrantzgt 10 B
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7902" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Jørgensen, Rune Aaen
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       973 24 533
+      </td>
+      <td class="ListItem">
+       Trondheimsveien 184
+      </td>
+      <td class="ListItem">
+       0570 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7774" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Jøraas, Terje
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       906 08 706
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1 A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7038" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kale, Emine
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       977 69 853
+      </td>
+      <td class="ListItem">
+       Trondheimsveien 184
+      </td>
+      <td class="ListItem">
+       0570 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8025" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kamphus, Henrik
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       947 89 879
+      </td>
+      <td class="ListItem">
+       Østensjøveien 36
+      </td>
+      <td class="ListItem">
+       0667 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7948" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Karlsøen, Bente Brekne
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       919 04 445
+      </td>
+      <td class="ListItem">
+       Oppsal samfunnshus, Vetlandsveien 99-101
+      </td>
+      <td class="ListItem">
+       0685 Oslo
+      </td>
+      <td class="ListItem">
+       Vetlandsveien 99,0685 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7519" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Karma, Markku
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       950 06 678
+      </td>
+      <td class="ListItem">
+       Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7116" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kjølseth, Tove Kjersti
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       915 35 959
+      </td>
+      <td class="ListItem">
+       Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+       Pb. 4254 Nydalen,0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7389" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kjøsnes, Ragnhild
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       976 00 590
+      </td>
+      <td class="ListItem">
+       Ullern allè 28
+      </td>
+      <td class="ListItem">
+       0381 Oslo
+      </td>
+      <td class="ListItem">
+       Ullern allè 28,0381 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7767" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kneppen, Olav
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       924 69 317
+      </td>
+      <td class="ListItem">
+       Haugerudsenteret 1, 5 etg
+      </td>
+      <td class="ListItem">
+       0673 Oslo
+      </td>
+      <td class="ListItem">
+       Postboks 76 Haugerud,0616 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7929" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kolflaath, Ingrid
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       913 95 609
+      </td>
+      <td class="ListItem">
+       Ryensvingen 11
+      </td>
+      <td class="ListItem">
+       0680 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7192" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kraus, Miroslawa
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       412 77 008
+      </td>
+      <td class="ListItem">
+       Ruseløkkveien 59
+      </td>
+      <td class="ListItem">
+       0251 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7173" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kristiansen, Sølvi
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       917 73 120
+      </td>
+      <td class="ListItem">
+       Fridtjof  Nansens vei 17
+      </td>
+      <td class="ListItem">
+       0369 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7309" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Krog, Dag
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       452 15 863
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7864" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kvamme, Gry
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       973 20 886
+      </td>
+      <td class="ListItem">
+       Trondheimsveien 184
+      </td>
+      <td class="ListItem">
+       0570 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7150" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Kværness, Ragnar
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       909 24 440
+      </td>
+      <td class="ListItem">
+       c/o Karakteranalytisk Institutt, Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7016" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Lid, Bård Jostein
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       467 63 816
+      </td>
+      <td class="ListItem">
+       Rosenkrantz gt. 7
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7174" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Lind, Inga Marie
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       934 64 102
+      </td>
+      <td class="ListItem">
+       Nordahl Brunsgt. 22
+      </td>
+      <td class="ListItem">
+       0165 Oslo
+      </td>
+      <td class="ListItem">
+       Nordahl Brunsgt 22,0166 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6969" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Lind-Fossen, Anne Kari
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       +4747361516
+      </td>
+      <td class="ListItem">
+       St. Olavsplass 3
+      </td>
+      <td class="ListItem">
+       0165 Oslo
+      </td>
+      <td class="ListItem">
+       St. Olavs Plass 3,0165 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7825" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Liaaen, Torbjørn
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       455 11 976
+      </td>
+      <td class="ListItem">
+       Økern torgvei 1
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6777" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Magnussen, Ingrid E
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       930 53 216
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7781" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Mbamalu, Toby
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       902 38 327
+      </td>
+      <td class="ListItem">
+       Haugerudsenteret 1-7
+      </td>
+      <td class="ListItem">
+       0673 Oslo
+      </td>
+      <td class="ListItem">
+       Haugerudsenteret 1,0673  Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8078" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Mekjan, Gine
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       402 00 563
+      </td>
+      <td class="ListItem">
+       Ryenstubben 3
+      </td>
+      <td class="ListItem">
+       0679 Oslo
+      </td>
+      <td class="ListItem">
+       Ryenstubben 3, ,0679 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7768" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Mellingen, Kjetil
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       993 33 039
+      </td>
+      <td class="ListItem">
+       Selma Ellefsensvei 6
+      </td>
+      <td class="ListItem">
+       0585 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7905" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Meyer, Cecilie
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       918 96 855
+      </td>
+      <td class="ListItem">
+       Nedre Kalbakkvei 4
+      </td>
+      <td class="ListItem">
+       0950 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6982" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Midbøe, Liv Jæger
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       959 25 589
+      </td>
+      <td class="ListItem">
+       Rosenkrantzgate 7
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+       Rosenkrantz gt 7,0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7780" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Milde, Lill-Iren
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       413 02 008
+      </td>
+      <td class="ListItem">
+       Ryenstubben 3
+      </td>
+      <td class="ListItem">
+       0679 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7163" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Mykland, Gunn E Bie
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       916 18 404
+      </td>
+      <td class="ListItem">
+       St.Olavs plass 3
+      </td>
+      <td class="ListItem">
+       0165 Oslo
+      </td>
+      <td class="ListItem">
+       St. Olavsplass 3,0165 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7892" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Noer, Anne Kristin
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       952 93 176
+      </td>
+      <td class="ListItem">
+       Trondheimsveien 184
+      </td>
+      <td class="ListItem">
+       0570 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8020" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Olsen, Marit
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       920 25 672
+      </td>
+      <td class="ListItem">
+       Holmlia Senter vei 12
+      </td>
+      <td class="ListItem">
+       1255 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7430" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Olsen, Rune
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       413 45 340
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6970" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Olsvold, Aina
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       481 06 653
+      </td>
+      <td class="ListItem">
+       Oslo Hospital, Ekebergveien 1a, 0192 Oslo
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+       Oslo Hospital, Ekebergveien 1a,0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7783" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Rosseland, Morten Røed
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       416 42 325
+      </td>
+      <td class="ListItem">
+       Haugerudsenteret 1
+      </td>
+      <td class="ListItem">
+       0673 Oslo
+      </td>
+      <td class="ListItem">
+       Postboks 76, Haugerud,0616 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7532" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Rostad, Anne
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       979 70 705
+      </td>
+      <td class="ListItem">
+       Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8115" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Rustad, Nora
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       951 66 603
+      </td>
+      <td class="ListItem">
+       Rosenkrantzgate 7
+      </td>
+      <td class="ListItem">
+       0159 Oslo
+      </td>
+      <td class="ListItem">
+       Rosenkrantz gate 7,0159 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7816" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Røberg, Liv
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       919 12 203
+      </td>
+      <td class="ListItem">
+       Utmarkveien 2
+      </td>
+      <td class="ListItem">
+       0689 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7925" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Rønningen, Kjetil
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       966 33 422
+      </td>
+      <td class="ListItem">
+       Ryensvingen 11
+      </td>
+      <td class="ListItem">
+       0680 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6966" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Råbu, Marit
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       412 34 627
+      </td>
+      <td class="ListItem">
+       Gjerdrums vei 19
+      </td>
+      <td class="ListItem">
+       0484 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7828" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Sandberg, Lars Viking
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       966 43 994
+      </td>
+      <td class="ListItem">
+       Kabelgata 1B
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7245" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Saugstad, Ann-Kristin
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       984 62 231
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7818" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Skeie, Thomas Aarup
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       902 05 685
+      </td>
+      <td class="ListItem">
+       Økern Torgvei 1
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8052" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Skjerve, Randi Maya Mangset
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       406 24 645
+      </td>
+      <td class="ListItem">
+       Holmlia Senter vei 12
+      </td>
+      <td class="ListItem">
+       1255 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7297" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Skjervheim, Hilde
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       410 30 908
+      </td>
+      <td class="ListItem">
+       Ullern alle 28
+      </td>
+      <td class="ListItem">
+       0381 Oslo
+      </td>
+      <td class="ListItem">
+       Ullern allé 28,0381 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6968" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Snipstad, Anne
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       907 79 432
+      </td>
+      <td class="ListItem">
+       St Olavs plass 3
+      </td>
+      <td class="ListItem">
+       0165 Oslo
+      </td>
+      <td class="ListItem">
+       St Olavsplass 3,0165 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7128" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Stokstad, Bernt
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       975 85 920
+      </td>
+      <td class="ListItem">
+       Fridtjof Nansens vei 17
+      </td>
+      <td class="ListItem">
+       0369 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7836" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Strand, Anne Lovise
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       973 18 207
+      </td>
+      <td class="ListItem">
+       Linderud senter, Erich Mogensøns vei 38
+      </td>
+      <td class="ListItem">
+       0594 Oslo
+      </td>
+      <td class="ListItem">
+       Postboks 60, Linderud,0517 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7167" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Strand, Arvid
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       476 73 441
+      </td>
+      <td class="ListItem">
+       Linderud Senter, Erich Mogensøns vei 38
+      </td>
+      <td class="ListItem">
+       0594 Oslo
+      </td>
+      <td class="ListItem">
+       Linderud Senter PB 140,0594 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6772" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Strømme, Hanne
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       400 40 280
+      </td>
+      <td class="ListItem">
+       Fridtjof Nansens vei 17
+      </td>
+      <td class="ListItem">
+       0369 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6771" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Stänicke, Erik
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       419 07 050
+      </td>
+      <td class="ListItem">
+       Fridtjof Nansens vei 17
+      </td>
+      <td class="ListItem">
+       0369 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7096" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Stømner, Trine
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       920 85 640
+      </td>
+      <td class="ListItem">
+       Fritjof Nansens vei 17
+      </td>
+      <td class="ListItem">
+       0369 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7148" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Sønderland, Guro
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       986 42 057
+      </td>
+      <td class="ListItem">
+       Kruses gate 8
+      </td>
+      <td class="ListItem">
+       0260 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7489" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Tallberg, Truls
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       482 05 897
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1 A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+       Humleveien 4 A, 0870 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7903" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Tenmann, Kari
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       952 53 073
+      </td>
+      <td class="ListItem">
+       Økern Torgvei 1
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="8039" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Torjussen, Kristine
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       944 52 103
+      </td>
+      <td class="ListItem">
+       Holmlia Senter vei 12
+      </td>
+      <td class="ListItem">
+       1255 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7135" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Tveita, Unni
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       952 31 318
+      </td>
+      <td class="ListItem">
+       Kirkevn. 64 B
+      </td>
+      <td class="ListItem">
+       0364 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6979" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Vesterhagen, Mirjam Anett
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       926 16 488
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7785" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Vik, Henrik Riekeles
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       940 93 605
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7791" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Volden, Maj
+      </td>
+      <td class="ListItem">
+       DPS Søndre Oslo
+      </td>
+      <td class="ListItem">
+       913 29 791
+      </td>
+      <td class="ListItem">
+       Ryenstubben 3
+      </td>
+      <td class="ListItem">
+       0679 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7549" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Wangen, Inger
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       480 75 846
+      </td>
+      <td class="ListItem">
+       Østensjøveien 36
+      </td>
+      <td class="ListItem">
+       0667 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7973" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Wenneberg, Anders Skogen
+      </td>
+      <td class="ListItem">
+       DPS Vinderen
+      </td>
+      <td class="ListItem">
+       922 24 542
+      </td>
+      <td class="ListItem">
+       Østensjøveien 36
+      </td>
+      <td class="ListItem">
+       0667 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6980" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Zahraei, Mansoureh
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       934 27 261
+      </td>
+      <td class="ListItem">
+       Rosenborggata 3
+      </td>
+      <td class="ListItem">
+       0356 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="6981" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Önfjörd, Gudrun
+      </td>
+      <td class="ListItem">
+       DPS Lovisenberg
+      </td>
+      <td class="ListItem">
+       929 95 288
+      </td>
+      <td class="ListItem">
+       Frydensgt. 2 A
+      </td>
+      <td class="ListItem">
+       0564 Oslo
+      </td>
+      <td class="ListItem">
+       Frydens gate 2 A,0564 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7508" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Østberg, Marit Andersen
+      </td>
+      <td class="ListItem">
+       DPS Groruddalen
+      </td>
+      <td class="ListItem">
+       483 69 216
+      </td>
+      <td class="ListItem">
+       Oslo Hospital, Ekebergveien 1 A
+      </td>
+      <td class="ListItem">
+       0192 Oslo
+      </td>
+      <td class="ListItem">
+       Ekebergveien 1 A ,0192 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7833" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Østby, Marianne
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       484 33 462
+      </td>
+      <td class="ListItem">
+       Erich Mogensøns vei 38, Linderud senter 5 etg.
+      </td>
+      <td class="ListItem">
+       0594 Oslo
+      </td>
+      <td class="ListItem">
+       Postboks 60, Linderud,0517 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+     <tr id="7837" onmouseout="UnMarkLine(this)" onmouseover="MarkLine(this); Show(event,this)" style="height: 30px;">
+      <td class="ListItem">
+       Østlie, Kristin
+      </td>
+      <td class="ListItem">
+       DPS Nydalen
+      </td>
+      <td class="ListItem">
+       481 70 742
+      </td>
+      <td class="ListItem">
+       Økern Torg vei 1
+      </td>
+      <td class="ListItem">
+       0580 Oslo
+      </td>
+      <td class="ListItem">
+      </td>
+      <td class="ListItem">
+      </td>
+     </tr>
+    </table>
+   </div>
+   <!--EndRepeat-->
+   <div id="Info" style="position:absolute; left:30px; top:100px; width:550px; ; visibility:hidden; background-color: #DFE6EB; border-style:solid; border-width:2px; padding:15px">
+   </div>
+  </br>
+ </body>
+</html>
